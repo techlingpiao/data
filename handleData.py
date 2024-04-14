@@ -63,8 +63,8 @@ density2 = len(user_data)/(len(anime_ids)*len(user_ids))
 
 
 # 创建用户-项目的交互矩阵
-row = user_data['user']
-col = user_data['anime']
+row = user_data['user'].map(user2_encoded)
+col = user_data['anime'].map(anime2_encoded)
 data = [1] * len(user_data)
 user_item_matrix = csr_matrix((data, (row, col)), shape=(len(user_ids), len(anime_ids)))
 
