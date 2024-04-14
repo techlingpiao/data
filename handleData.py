@@ -73,13 +73,14 @@ train_ratio = 0.7
 val_ratio = 0.2
 test_ratio = 0.1
 
-train_size = int(len(user_data) * train_ratio)
-val_size = int(len(user_data) * val_ratio)
-test_size = int(len(user_data) * test_ratio)
+total_size = len(user_data)
+train_size = int(total_size * train_ratio)
+val_size = int(total_size * val_ratio)
+test_size = total_size - train_size - val_size
 
 train = user_item_matrix[:train_size]
 val = user_item_matrix[train_size:train_size+val_size]
-test = user_item_matrix[train_size+val_size:]
+test = user_item_matrix[train_size+val_size:total_size]
 
 # 分别保存训练集、验证集和测试集
 with open('train_mat.pkl', 'wb') as f:
